@@ -27,7 +27,7 @@ CREATE TABLE employee (
   role_id INTEGER(15),
   manager_id INTEGER(15),
   PRIMARY KEY (id),
-  FOREIGN KEY (role_id) REFERENCES role(id) on delete cascade,
+  FOREIGN KEY (role_id) REFERENCES role(id),
   FOREIGN KEY (manager_id) REFERENCES employee(id)
 );
 
