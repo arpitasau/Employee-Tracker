@@ -22,8 +22,8 @@ INSERT INTO role(title, salary, department_id) VALUES("Senior Paralegal", 90000,
 -- adding data in employee table
 INSERT INTO employee(first_name, last_name, role_id, manager_id) VALUES("John", "Doe", 6, null);
 INSERT INTO employee(first_name, last_name, role_id, manager_id) VALUES("Gail", "Smith", 2, 1);
-INSERT INTO employee(first_name, last_name, role_id, manager_id) VALUES("Cindy", "Jones", 6, 1);
-INSERT INTO employee(first_name, last_name, role_id, manager_id) VALUES("Jim", "Greenwood", 6, 1);
+INSERT INTO employee(first_name, last_name, role_id, manager_id) VALUES("Cindy", "Jones", 1, 1);
+INSERT INTO employee(first_name, last_name, role_id, manager_id) VALUES("Jim", "Greenwood", 1, 1);
 INSERT INTO employee(first_name, last_name, role_id, manager_id) VALUES("Don", "Wilshire", 3, 1);
 INSERT INTO employee(first_name, last_name, role_id, manager_id) VALUES("Nisha", "Patel", 7, 1);
 INSERT INTO employee(first_name, last_name, role_id, manager_id) VALUES("Kaity", "George", 7, 1);

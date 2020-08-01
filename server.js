@@ -115,14 +115,14 @@ function addEmp(){
 
 };
 function viewDept(){
-    connection.query("SELECT name, id FROM department", (err, results)=>{
+    connection.query(`SELECT name, id FROM department;`, (err, results)=>{
         if(err)throw err;
         console.table(results);
         renderAction()
     });
 }
 function viewRoles(){
-    connection.query("SELECT * FROM role",(err, results)=>{
+    connection.query(`SELECT * FROM role;`,(err, results)=>{
         if(err)throw err;
         console.table(results);
         renderAction()
@@ -130,6 +130,18 @@ function viewRoles(){
 
 }
 function viewEmp(){
+    connection.query(`
+    SELECT e.first_name FirstName, e.last_name LastName, d.name Department, r.title JobTitle, r.salary Salary, e.id EmpID, e.manager_id Manager
+             FROM employee e
+             LEFT JOIN role r on (e.role_id = r.id)
+             LEFT JOIN department d on (r.department_id = d.id)
+             LEFT JOIN employee m on (e.manager_id = m.id)
+             ORDER BY e.first_name,e.last_name,d.name,r.title;`,(err, results)=>{
+        if(err)throw err;
+        console.table(results);
+        renderAction()
+    });
+
 
 }
 function viewEmpByManager(){
