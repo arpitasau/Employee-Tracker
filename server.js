@@ -33,7 +33,7 @@ function renderAction() {
     ]).then(answer => {
         switch (answer.action) {
             case "Add Departments":
-                addDepartments();
+                addDept();
                 break;
             case "Add Roles":
                 addRoles();
@@ -42,7 +42,7 @@ function renderAction() {
                 addEmp();
                 break;
             case "View Departments":
-                viewDep();
+                viewDept();
                 break;
             case "View Roles":
                 viewRoles();
@@ -63,7 +63,7 @@ function renderAction() {
                 updateEmpManager();
                 break;
             case "Delete Departments":
-                deleteDep();
+                deleteDept();
                 break;
             case "Delete Roles":
                 deleteRoles();
@@ -79,38 +79,72 @@ function renderAction() {
         }
     });
 }
+//This funtion is to validate that user added something for add/update function
+function validateInput(input){
+    if(input === ''){
+        return "Please add text to this field"
+    }
+    return true
+};
 
-function addDepartments(){
+
+function addDept(){
+    inquirer.prompt([
+        {
+            name: "dept",
+            massage: "Enter Department Name:",
+            type: "input",
+            validate : validateInput
+    }
+]).then(answer => {
+    connection.query("INSERT INTO department (name) VALUES (?)",
+    answer.dept,
+    function(err){
+        if (err)throw err;
+        renderAction();
+    });
+})
+
 
 };
 function addRoles(){
+
 
 };
 function addEmp(){
 
 };
-function viewDep(){
-
-};
+function viewDept(){
+    connection.query("SELECT name, id FROM department", (err, results)=>{
+        if(err)throw err;
+        console.table(results);
+        renderAction()
+    });
+}
 function viewRoles(){
+    connection.query("SELECT * FROM role",(err, results)=>{
+        if(err)throw err;
+        console.table(results);
+        renderAction()
+    });
 
-};
+}
 function viewEmp(){
 
-};
+}
 function viewEmpByManager(){
 
-};
+}
 function viewBudgets(){
 
-};
+}
 function updateEmpRoles(){
 
-};
+}
 function updateEmpManager(){
 
-};
-function deleteDep(){
+}
+function deleteDept(){
 
 };
 
